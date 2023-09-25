@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>社員勤怠管理アプリ</title>
+	<link th:href="@{/css/style.css}" rel="styleSheet">
+</head>
+
+<body class="main">
+	<h1 class="main__title">社員一覧</h1>
+	
+	<table class="main__table">
+		<tr>
+			<th>No</th>
+			<th>氏名</th>
+			<th>出身地</th>
+			<th>入社月</th>
+			<th></th>
+		</tr>
+		<tr th:each="employee : ${employeeList}">
+			<td th:text="${employee.id}"></td>
+			<td th:text="${employee.name}"></td>
+			<td th:text="${employee.hometown}"></td>
+			<td th:text="${employee.joiningMonth}"></td>
+			
+			<td>
+				<form>
+					<a href="detail" th:href="@{/detail(id=${employee.id})}" class="main__detailLink">詳細</a>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<form>
+		<a href="/create" class="main__newButton">新規登録へ</a>
+	</form>
+
+</body>
+
+</html>

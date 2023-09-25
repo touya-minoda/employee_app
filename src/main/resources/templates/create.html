@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>社員勤怠管理アプリ</title>
+	<link th:href="@{/css/style.css}" rel="styleSheet">
+</head>
+<body class="main">
+	<h1 class="main__title">社員新規登録</h1>
+	<h2 style="color:red;" th:text="${register}"></h2>
+	<form action="create" method="post">
+		<table class="main__table">
+			<tr>
+				<td>氏名</td>
+				<td><input type="text" placeholder="山田　太郎" name="name"></td>
+			</tr>
+			<tr>
+				<td>出身地</td>
+				<td><input type="text" placeholder="東京都" name="hometown"></td>
+			</tr>
+			<tr>
+				<td>入社月</td>
+				<td><input type="date" name="joiningMonth"></td>
+			</tr>
+		</table>
+		<input type="submit" value="登録する" class="main__submitButton">
+		
+	</form>
+	<a href="/top">社員一覧へ</a>
+</body>
