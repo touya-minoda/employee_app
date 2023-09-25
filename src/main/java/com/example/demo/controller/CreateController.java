@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import java.io.IOException;
 
 import org.springframework.http.HttpEntity;
@@ -17,12 +15,6 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 
 public class CreateController {
-	
-	//private final EmployeeService employeeService;
-	
-	//public CreateController(EmployeeService employeeService) {
-	//	this.employeeService = employeeService;
-	//}
 	
 	@GetMapping("create")
 	public String create() {
