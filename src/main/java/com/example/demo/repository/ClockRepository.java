@@ -19,12 +19,9 @@ public class ClockRepository {
 	public Clock[] getClock(int id) throws IOException {
 
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock?employeeId={id}";
-		//String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
 
 		RestTemplate rest = new RestTemplate();
 		
-		//int id = 1;
-		//ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
 
 		String json = response.getBody();
@@ -44,7 +41,6 @@ public class ClockRepository {
 		RestTemplate rest = new RestTemplate();
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
-		//ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class);
 
 		String json = response.getBody();
 

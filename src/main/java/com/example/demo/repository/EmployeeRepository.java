@@ -16,13 +16,10 @@ public class EmployeeRepository {
 	//社員情報一覧
 	public Employee[] allEmployee() throws IOException {
 
-		// String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee?id={id}";
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
 
 		RestTemplate rest = new RestTemplate();
 		
-		//int id = 1;
-		//ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class);
 
 		String json = response.getBody();
@@ -42,7 +39,6 @@ public class EmployeeRepository {
 		RestTemplate rest = new RestTemplate();
 		
 		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
-		//ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class);
 
 		String json = response.getBody();
 

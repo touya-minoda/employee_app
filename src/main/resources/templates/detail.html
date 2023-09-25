@@ -16,7 +16,6 @@
 		<button formaction="/clockOut" class="main__clockButton">退勤</button>
 		<input type="hidden" th:value="${employeeId}" name="employeeId">
 	</form>
-	
 	<table class="main__table">
 		<tr>
 			<td>出勤日時</td>
@@ -24,15 +23,13 @@
 			<td>休憩終了日時</td>
 			<td>退勤日時</td>
 		</tr>
-		
 		<tr th:each="clock : ${clockList}">
 			<th th:text="${clock.clockIn}"></th>
 			<th th:text="${clock.breakStart}"></th>
 			<th th:text="${clock.breakEnd}"></th>
 			<th th:text="${clock.clockOut}"></th>
+		</tr>
 	</table>
 	<a href="top">社員一覧へ</a>
-
 </body>
-
 </html>

@@ -30,16 +30,6 @@ public class CreateController {
 		
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
 		
-		//リクエスト情報の作成
-//		Register register = new Register();
-//		register.setName(name);
-//		register.setHometown(homeTown);
-//		register.setJoiningMonth(joiningMonth);
-		
-		//JSON形式に変換
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		String jsonBody = objectMapper.writeValueAsString(register);
-		
 		String jsonBody = "{\"body\": \"{\\\"name\\\":\\\"" + name 
 						+ "\\\",\\\"hometown\\\":\\\"" + homeTown
 						+ "\\\",\\\"joining_month\\\":\\\"" + joiningMonth
@@ -50,14 +40,8 @@ public class CreateController {
 		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
 		 
 		restTemplate.postForObject(url, entity, String.class);
-		//String responseBody = responseEntity.getBody();
 		
-//		model.addAttribute("register", response);
-	
-		//model.addAttribute("register", employee.getName() +"　"+ employee.getHometown());
-		
-		//return "redirect:/top";
-		return "create.html";
+		return "redirect:/top";
 	}
 
 }

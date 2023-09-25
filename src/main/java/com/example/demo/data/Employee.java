@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class Employee {
 
 	@JsonProperty("id")
-	//JsonIgnore
 	private int id;
 
 	@JsonProperty("name")
@@ -25,11 +24,9 @@ public class Employee {
 	private String joiningMonth;
 	
 	@JsonProperty("created_at")
-	//@JsonIgnore
 	private String createdAt;
 
 	@JsonProperty("updated_at")
-	//@JsonIgnore
 	private String updatedAt;
 
 }
