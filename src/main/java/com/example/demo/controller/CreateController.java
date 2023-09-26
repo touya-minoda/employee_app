@@ -29,13 +29,12 @@ public class CreateController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
+		RestTemplate restTemplate = new RestTemplate();
 		
 		String jsonBody = "{\"body\": \"{\\\"name\\\":\\\"" + name 
 						+ "\\\",\\\"hometown\\\":\\\"" + homeTown
 						+ "\\\",\\\"joining_month\\\":\\\"" + joiningMonth
 						+ "\\\"}\"}";
-		
-		RestTemplate restTemplate = new RestTemplate();
 		
 		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
 		 
