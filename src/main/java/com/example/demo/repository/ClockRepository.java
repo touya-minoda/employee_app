@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.data.Clock;
-import com.example.demo.data.Employee;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
@@ -32,26 +31,5 @@ public class ClockRepository {
 
 		return clockList;
 	}
-	
-	//社員の詳細情報を取得
-	public Employee[] detailEmployee(int id) throws IOException {
-
-		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee?id={id}";
-
-		RestTemplate rest = new RestTemplate();
-		
-		ResponseEntity<String> response = rest.exchange(url, HttpMethod.GET, null, String.class, id);
-
-		String json = response.getBody();
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		Employee[] employeeList = mapper.readValue(json, Employee[].class);
-
-		return employeeList;
-	}
-	
-	
-
 
 }

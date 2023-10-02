@@ -71,5 +71,4 @@ public class ClockService {
 		restTemplate.postForObject(url, entity, String.class);
 	}
 	
-	
 }
