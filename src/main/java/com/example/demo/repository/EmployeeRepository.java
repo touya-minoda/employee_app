@@ -2,7 +2,10 @@ package com.example.demo.repository;
 
 import java.io.IOException;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -47,6 +50,25 @@ public class EmployeeRepository {
 		Employee[] employeeList = mapper.readValue(json, Employee[].class);
 
 		return employeeList;
+	}
+
+	//社員新規登録
+	public void createEmployee(String name, String homeTown, String joiningMonth) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/employee";
+		RestTemplate restTemplate = new RestTemplate();
+		
+		String jsonBody = "{\"body\": \"{\\\"name\\\":\\\"" + name 
+						+ "\\\",\\\"hometown\\\":\\\"" + homeTown
+						+ "\\\",\\\"joining_month\\\":\\\"" + joiningMonth
+						+ "\\\"}\"}";
+		
+		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
+		 
+		restTemplate.postForObject(url, entity, String.class);
+		
 	}
 
 }

@@ -6,11 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.data.Clock;
 import com.example.demo.repository.ClockRepository;
@@ -32,29 +28,25 @@ public class ClockService {
 
 	}
 	
-	public void register(int id, String kinds) {
+	//勤怠情報登録
+	public void register(int id, String kinds) throws IOException {
 		LocalDateTime nowDate = LocalDateTime.now();
 		
-		DateTimeFormatter now = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // ①
-        String formatNowDate = now.format(nowDate);
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		
-		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock"; 
+		DateTimeFormatter now = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
+        String formatNowDate = now.format(nowDate); 
 		
 		String clockIn = "";
 		String breakStart = "";
 		String breakEnd = "";
 		String clockOut = "";
 		
-		if(kinds == "clockIn") {
+		if(kinds.equals("clockIn")) {
 			clockIn = formatNowDate;
-		} else if (kinds == "breakStart") {
+		} else if (kinds.equals("breakStart")) {
 			breakStart = formatNowDate;
-		} else if (kinds == "breakEnd") {
+		} else if (kinds.equals("breakEnd")) {
 			breakEnd = formatNowDate;
-		} else if (kinds == "clockOut") {
+		} else if (kinds.equals("clockOut")) {
 			clockOut = formatNowDate;
 		}
 		
@@ -64,11 +56,7 @@ public class ClockService {
 							+ "\\\",\\\"break_end\\\":\\\"" + breakEnd 
 							+ "\\\",\\\"clock_out\\\":\\\"" + clockOut + "\\\"}\"}";				
 		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
-		 
-		restTemplate.postForObject(url, entity, String.class);
+		clockRepository.clockRegister(jsonBody);
 	}
 	
 }

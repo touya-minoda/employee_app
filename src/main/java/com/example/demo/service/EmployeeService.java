@@ -34,4 +34,11 @@ public class EmployeeService {
 
 	}
 	
+	//社員新規登録
+	public void createEmployee(String name, String homeTown, String joiningMonth) throws IOException {
+		//リポジトリを呼び出し
+		employeeRepository.createEmployee(name, homeTown, joiningMonth);
+		
+	}
+	
 }

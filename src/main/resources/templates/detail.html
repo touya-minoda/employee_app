@@ -6,14 +6,15 @@
 	<link th:href="@{/css/style.css}" rel="styleSheet">
 </head>
 <body class="main">
-	<p th:text="${result}"></p>
+	<p th:text="${kinds}"></p>
 	<h1 class="main__title">社員詳細</h1>
 	<h2 th:text="${employeeName}"></h2>
-	<form method="post">
-		<button formaction="/clockIn" class="main__clockButton">出勤</button>
-		<button formaction="/breakStart" class="main__clockButton">休憩開始</button>
-		<button formaction="/breakEnd" class="main__clockButton">休憩終了</button>
-		<button formaction="/clockOut" class="main__clockButton">退勤</button>
+	<h2 th:text="${jsonBody}"></h2>
+	<form method="post" action="/clock">
+		<button name="clock" value="clockIn" class="main__clockButton">出勤</button>
+		<button name="clock" value="breakStart" class="main__clockButton">休憩開始</button>
+		<button name="clock" value="breakEnd" class="main__clockButton">休憩終了</button>
+		<button name="clock" value="clockOut" class="main__clockButton">退勤</button>
 		<input type="hidden" th:value="${employeeId}" name="employeeId">
 	</form>
 	<table class="main__table">

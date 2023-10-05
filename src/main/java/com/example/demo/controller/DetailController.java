@@ -43,32 +43,18 @@ public class DetailController {
 		return "detail.html";
 	}
 	
-	@PostMapping("/clockIn")
-	public String clockIn(@RequestParam("employeeId") int id, Model model) throws IOException {
-		String kinds = "clockIn";
-		clockService.register(id, kinds);
+	//社員詳細ページ勤怠情報登録(POST)
+	@PostMapping("/clock")
+	public String clockIn(@RequestParam("employeeId") int employeeId, @RequestParam("clock") String clock, Model model) throws IOException {
+		//従業員IDとボタンのタイプを取得し、サービスクラスに送る
+		clockService.register(employeeId, clock);
+		
+		model.addAttribute("kinds", clock);
+		
 		return "redirect:/top";
+
 	}
 	
-	@PostMapping("/breakStart")
-	public String breakStart(@RequestParam("employeeId") int id, Model model) throws IOException {
-		String kinds = "breakStart";
-		clockService.register(id, kinds);
-		return "redirect:/top";
-	}
-	
-	@PostMapping("/breakEnd")
-	public String breakEnd(@RequestParam("employeeId") int id, Model model) throws IOException {
-		String kinds = "breakEnd";
-		clockService.register(id, kinds);
-		return "redirect:/top";
-	}
-	
-	@PostMapping("/clockOut")
-	public String clockOut(@RequestParam("employeeId") int id, Model model) throws IOException {
-		String kinds = "clockOut";
-		clockService.register(id, kinds);
-		return "redirect:/top";
-	}
+
 
 }

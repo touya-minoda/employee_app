@@ -1,9 +1,11 @@
 package com.example.demo.repository;
 
 import java.io.IOException;
-// import java.time.Clock;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -31,5 +33,19 @@ public class ClockRepository {
 
 		return clockList;
 	}
-
+	
+	//勤怠情報を登録(POST)
+	public void clockRegister(String jsonBody) throws IOException {
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock";
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
+		 
+		restTemplate.postForObject(url, entity, String.class);
+	}
 }
