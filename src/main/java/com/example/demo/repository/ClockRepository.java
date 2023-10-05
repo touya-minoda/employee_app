@@ -35,7 +35,7 @@ public class ClockRepository {
 	}
 	
 	//勤怠情報を登録(POST)
-	public void clockRegister(String jsonBody) throws IOException {
+	public void clockRegister(Clock clock) throws IOException {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -43,6 +43,12 @@ public class ClockRepository {
 		String url = "https://jsn9xu2vsk.execute-api.ap-northeast-1.amazonaws.com/sample/attendanceandabsence/clock";
 		
 		RestTemplate restTemplate = new RestTemplate();
+		
+		String jsonBody = "{\"body\": \"{\\\"employee_id\\\":\\\"" + clock.getId() 
+				+ "\\\",\\\"clock_in\\\":\\\"" + clock.getClockIn() 
+				+ "\\\",\\\"break_start\\\":\\\"" + clock.getBreakStart() 
+				+ "\\\",\\\"break_end\\\":\\\"" + clock.getBreakEnd() 
+				+ "\\\",\\\"clock_out\\\":\\\"" + clock.getClockOut() + "\\\"}\"}";
 		
 		HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
 		 

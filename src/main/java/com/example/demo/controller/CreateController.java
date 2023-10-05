@@ -33,5 +33,4 @@ public class CreateController {
 		return "redirect:/top";
 		
 	}
-
 }

@@ -50,13 +50,14 @@ public class ClockService {
 			clockOut = formatNowDate;
 		}
 		
-		String jsonBody = "{\"body\": \"{\\\"employee_id\\\":\\\"" + id 
-							+ "\\\",\\\"clock_in\\\":\\\"" + clockIn 
-							+ "\\\",\\\"break_start\\\":\\\"" + breakStart 
-							+ "\\\",\\\"break_end\\\":\\\"" + breakEnd 
-							+ "\\\",\\\"clock_out\\\":\\\"" + clockOut + "\\\"}\"}";				
+		Clock clock = new Clock();
+		clock.setId(id);
+		clock.setClockIn(clockIn);
+		clock.setBreakEnd(breakEnd);
+		clock.setBreakStart(breakStart);
+		clock.setClockOut(clockOut);
 		
-		clockRepository.clockRegister(jsonBody);
+		clockRepository.clockRegister(clock);
 	}
 	
 }

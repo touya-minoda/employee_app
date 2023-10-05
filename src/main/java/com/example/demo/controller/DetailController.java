@@ -54,7 +54,4 @@ public class DetailController {
 		return "redirect:/top";
 
 	}
-	
-
-
 }
